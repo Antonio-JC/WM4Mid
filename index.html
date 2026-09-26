@@ -604,6 +604,18 @@
 
     // load dashboard on initial page load
     document.addEventListener('DOMContentLoaded', () => showSection('dashboard-section'));
+    
+function edit_customer(id) {
+    fetch('customers.php?id=' + id).then(res => res.json()).then(data => {
+        if (data.success) {
+            document.getElementById('customer_id').value = data.customer.id;
+            document.getElementById('customer_name').value = data.customer.name;
+            document.getElementById('customer_id_number').value = data.customer.id_number;
+            document.getElementById('customer_phone').value = data.customer.phone;
+            window.scrollTo(0, 0);
+        }
+    });
+}
 </script>
 
 </body>
