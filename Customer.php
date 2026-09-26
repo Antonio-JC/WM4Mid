@@ -60,23 +60,26 @@ class Customer extends BaseModel
     }
 
     public function all(array $filters = []): array
-    {
-        $sql    = 'SELECT * FROM customers';
-        $params = [];
+{
+    $sql    = 'SELECT * FROM customers';
+    $params = [];
 
-        if (!empty($filters['search'])) {
-            $sql             .= ' WHERE name LIKE :search OR phone LIKE :search OR id_number LIKE :search';
-            $params['search'] = '%' . $filters['search'] . '%';
-        }
-
-        $sort_and_limit = $this->build_sort_and_limit($filters, ['name', 'id_number', 'created_at'], 'name');
-        $sql           .= $sort_and_limit['sql'];
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute($params);
-
-        return $stmt->fetchAll();
+    if (!empty($filters['search'])) {
+        $sql .= ' WHERE name LIKE :search1 OR phone LIKE :search2 OR id_number LIKE :search3';
+        $term = '%' . $filters['search'] . '%';
+        $params['search1'] = $term;
+        $params['search2'] = $term;
+        $params['search3'] = $term;
     }
+
+    $sort_and_limit = $this->build_sort_and_limit($filters, ['name', 'id_number', 'created_at'], 'name');
+    $sql           .= $sort_and_limit['sql'];
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll();
+}
 
     private function validate_data(array $data): void
     {
