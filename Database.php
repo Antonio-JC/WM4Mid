@@ -5,10 +5,10 @@ final class Database
 {
     private static ?PDO $instance = null;
 
-    private const HOST = '127.0.0.1';
-    private const DB   = 'rental_system';
-    private const USER = 'root';
-    private const PASS = '';
+    private const HOST = 'sql301.infinityfree.com';
+    private const DB   = 'if0_43016075_rentalDB';
+    private const USER = 'if0_43016075';
+    private const PASS = 'xFreehostCS123';
     private const CHARSET = 'utf8mb4';
 
     private function __construct() {}
