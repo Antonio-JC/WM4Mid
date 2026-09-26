@@ -87,8 +87,10 @@ class InventoryManager extends BaseModel
         }
 
         if (!empty($filters['search'])) {
-            $where[]          = '(item_name LIKE :search OR serial_number LIKE :search)';
-            $params['search'] = '%' . $filters['search'] . '%';
+        $where[] = '(item_name LIKE :search1 OR serial_number LIKE :search2)';
+        $term = '%' . $filters['search'] . '%';
+        $params['search1'] = $term;
+        $params['search2'] = $term;
         }
 
         if (!empty($where)) {
